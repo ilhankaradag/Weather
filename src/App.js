@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+// https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}
+import React, { useState } from 'react'
+import Background from './companent/background/Background'
+import Result from './companent/result/Result'
+import Search from './companent/search/Search'
+
+import './index.css'
 
 function App() {
+  const [weather, setWeather] = useState({})
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <section className="app">
+      <Background background={weather.weather && weather.weather[0].main} />
+      <div id="title">Hava Durumu</div>
+      <Search setWeather={setWeather} />
+      <Result weather={weather} />
+    </section>
+  )
 }
 
-export default App;
+export default App
